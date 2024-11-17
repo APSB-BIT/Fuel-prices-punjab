@@ -10,7 +10,8 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     # Load data from the CSV file
-    df = pd.read_csv('indian_petrol_diesel_prices_2024.csv')
+    csv_path = os.path.join(os.path.dirname(__file__), 'indian_petrol_diesel_prices_2024.csv')
+    df = pd.read_csv(csv_path)
 
     # Create the Plotly graph
     trace_petrol = go.Scatter(
@@ -51,13 +52,15 @@ def index():
     average_petrol_price = df['Petrol Price (INR)'].mean()
     average_diesel_price = df['Diesel Price (INR)'].mean()
 
-    return render_template('index.html', 
-                           start_date=date_range[0], 
-                           end_date=date_range[1],
-                           avg_petrol_price=round(average_petrol_price, 2), 
-                           avg_diesel_price=round(average_diesel_price, 2),
-                           graph_html=graph_html)
-
+    return render_template('index.html',
+                         start_date=date_range[0],
+                         end_date=date_range[1],
+                         avg_petrol_price=round(average_petrol_price, 2),
+                         avg_diesel_price=round(average_diesel_price, 2),
+                         graph_html=graph_html)
 # Run the Flask app
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Use environment variables for production
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
