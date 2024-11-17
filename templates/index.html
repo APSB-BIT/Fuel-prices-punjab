@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petrol and Diesel Prices in India (2024)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            width: 100%;
+            padding: 20px;
+            background-color: #1f77b4;
+            color: white;
+            text-align: center;
+            font-size: 24px;
+        }
+        .container {
+            width: 80%;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .graph-container {
+            margin: 40px 0;
+        }
+        .info-box {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .info-box h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .info-box p {
+            font-size: 16px;
+            color: #666;
+        }
+        footer {
+            padding: 20px;
+            background-color: #1f77b4;
+            color: white;
+            text-align: center;
+            width: 100%;
+            margin-top: 50px;
+        }
+        .highlight {
+            color: #ff7f0e;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Petrol and Diesel Prices in India (2024)
+    </header>
+    <div class="container">
+        <h2>Overview of Petrol and Diesel Price Trends</h2>
+        <div class="graph-container">
+            <!-- Embed the Plotly graph -->
+            {{ graph_html|safe }}
+        </div>
+        <div class="info-box">
+            <h3>Key Insights</h3>
+            <p>The data spans from <strong>{{ start_date }}</strong> to <strong>{{ end_date }}</strong>.</p>
+            <p>The average petrol price during this period was <strong class="highlight">{{ avg_petrol_price }} INR</strong>.</p>
+            <p>The average diesel price during this period was <strong class="highlight">{{ avg_diesel_price }} INR</strong>.</p>
+        </div>
+    </div>
+    <footer>
+        Data Source: Indian Government
+    </footer>
+</body>
+</html>
